@@ -13,8 +13,10 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+import { Link } from 'react-router-dom';
+
+const pages = ['Bet Type', 'Customer Setup'];
+const settings = ['Sale/Carry/Lucky', 'Sale Summary'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -28,10 +30,14 @@ function ResponsiveAppBar() {
   };
 
   const handleCloseNavMenu = () => {
+
+    <Link to="/bet-type-config">BetType</Link>
     setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
+
+    <Link to="/sale-carry-lucky">Sale/Carry/Lucky</Link>
     setAnchorElUser(null);
   };
 
