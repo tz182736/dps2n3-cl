@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Home from './pages/main-entry';
@@ -12,9 +11,9 @@ import DpsAppBar from './components/DpsAppBar-responsive';
 function App() {
   return (
     <>
-      <DpsAppBar />
 
       <Router>
+        <DpsAppBar />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path="/bet-type-config" element={<Bet_type />} />
