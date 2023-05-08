@@ -1,6 +1,7 @@
+{/* #region(collapsed) List of Import  */ }
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
+import {Box} from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -10,15 +11,13 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import MenuItem from '@mui/material/MenuItem'; 
+import { Select } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-
-import { Link } from 'react-router-dom';
+{/* #endregion */ }
 
 const config_pages: [name: string, route: string][] = [['Bet Type', 'bet-type-config'], ['Customer setup', 'customer-config']]
-const pages = ['Bet Type', 'Customer Setup'];
-const settings = ['Sale/Carry/Lucky', 'Sale Summary'];
+const setting_pages: [name: string, route: string][] = [['Sale/Carry/Lucky', 'sale-carry-lucky'], ['Sale Summary', 'sale-summary']]
 
 function ResponsiveAppBar() {
 
@@ -34,45 +33,41 @@ function ResponsiveAppBar() {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
   // curried function to prevent callback 
   const handleCloseNavMenu2 = (routeData: string) => () => {
     setAnchorElNav(null);
     navigate(routeData);
   };
 
-  const handleCloseUserMenu = () => {
-
-    <Link to="/sale-carry-lucky">Sale/Carry/Lucky</Link>
+  const handleCloseUserMenu = (routeData: string) => () => {
     setAnchorElUser(null);
+    navigate(routeData);
   };
 
   return (
     <AppBar position="fixed">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
+          {/* #region customer name ui for desktop  */}
+          <Select style={{ flexGrow: 1 }}
             sx={{
-              mr: 2,
+              mr: 1,
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
+              fontWeight: 380,
+              letterSpacing: '.1rem',
               color: 'inherit',
               textDecoration: 'none',
             }}
+            value={'option1'}
+            onChange={() => { }}
+            displayEmpty
+            inputProps={{ 'aria-label': 'Select an option' }}
           >
-            LOGO
-          </Typography>
-
+            <MenuItem value={'option1'}>Option 1</MenuItem>
+            <MenuItem value={'option2'}>Option 2</MenuItem>
+            <MenuItem value={'option3'}>Option 3</MenuItem>
+          </Select>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -97,7 +92,7 @@ function ResponsiveAppBar() {
                 horizontal: 'left',
               }}
               open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+              onClose={handleCloseNavMenu2('')}
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
@@ -106,41 +101,49 @@ function ResponsiveAppBar() {
                 <MenuItem key={page[0]}
                   onClick={handleCloseNavMenu2(page[1])}
                 >
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="center">{page[0]}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
+          {/* #endregion customer name ui for Desktop */}
+
+          {/* #region customer name ui for Phone */}
+          <Select style={{ flexGrow: 1 }}
+            sx={{              
+              mr: 1,
+              display: { xs: 'flex', md: 'none'
+              },
               fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
+              fontWeight: 380,
+              letterSpacing: '.1rem',
               color: 'inherit',
               textDecoration: 'none',
             }}
+            value={'option1'}
+            onChange={() => { }}
+            displayEmpty
+            inputProps={{ 'aria-label': 'Select an option' }}
           >
-            LOGO
-          </Typography>
+            <MenuItem value={'option1'}>Option 1</MenuItem>
+            <MenuItem value={'option2'}>Option 2</MenuItem>
+            <MenuItem value={'option3'}>Option 3</MenuItem>
+          </Select>
+
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {config_pages.map((page) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={page[0]}
+                onClick={handleCloseNavMenu2(page[1])}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {page[0]}
               </Button>
             ))}
           </Box>
+          {/* #endregion customer name ui for phone */}
+
+          {/* #region right corner  Setting MenuItem , flexGrow: 0  */}
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
@@ -162,15 +165,16 @@ function ResponsiveAppBar() {
                 horizontal: 'right',
               }}
               open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
+              onClose={handleCloseUserMenu('')}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              {setting_pages.map((setting) => (
+                <MenuItem key={setting[0]} onClick={handleCloseUserMenu(setting[1])}>
+                  <Typography textAlign="center">{setting[0]}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
+          {/* #endregion right corner  Setting MenuItem , flexGrow: 0 */}
         </Toolbar>
       </Container>
     </AppBar>

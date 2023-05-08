@@ -6,12 +6,12 @@ import Customer_config from './pages/customer-config';
 import Sale_carry_lucky from './pages/sale-carry-lucky';
 import Sale_summary from './pages/sale-summary';
 import NotFound from './pages/NotFound';
+// import DpsAppBar from './components/DpsAppBar-tmp';
 import DpsAppBar from './components/DpsAppBar-responsive';
 
 function App() {
   return (
     <>
-
       <Router>
         <DpsAppBar />
         <Routes>
