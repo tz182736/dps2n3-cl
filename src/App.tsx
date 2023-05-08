@@ -9,6 +9,8 @@ import NotFound from './pages/NotFound';
 // import DpsAppBar from './components/DpsAppBar-tmp';
 import DpsAppBar from './components/DpsAppBar-responsive';
 
+import Tmp from './tmp';
+
 function App() {
   return (
     <>
@@ -21,6 +23,7 @@ function App() {
           <Route path="/sale-carry-lucky" element={<Sale_carry_lucky />} />
           <Route path="/sale-summary" element={<Sale_summary />} />
           <Route element={<NotFound />} />
+          <Route path="/tmp" element={<Tmp />} />
         </Routes>
       </Router>
     </>
