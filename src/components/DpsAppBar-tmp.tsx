@@ -12,18 +12,11 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { useNavigate } from 'react-router-dom';
 
-import { Link } from 'react-router-dom';
-
-const config_pages: [name: string, route: string][] = [['Bet Type', 'bet-type-config'], ['Customer setup', 'customer-config']]
-const pages = ['Bet Type', 'Customer Setup'];
-const settings = ['Sale/Carry/Lucky', 'Sale Summary'];
+const pages = ['Products', 'Pricing', 'Blog'];
+const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
-
-  const navigate = useNavigate();
-
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -38,20 +31,12 @@ function ResponsiveAppBar() {
     setAnchorElNav(null);
   };
 
-  // curried function to prevent callback 
-  const handleCloseNavMenu2 = (routeData: string) => () => {
-    setAnchorElNav(null);
-    navigate(routeData);
-  };
-
   const handleCloseUserMenu = () => {
-
-    <Link to="/sale-carry-lucky">Sale/Carry/Lucky</Link>
     setAnchorElUser(null);
   };
 
   return (
-    <AppBar position="fixed">
+    <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -102,10 +87,8 @@ function ResponsiveAppBar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {config_pages.map((page) => (
-                <MenuItem key={page[0]}
-                  onClick={handleCloseNavMenu2(page[1])}
-                >
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
