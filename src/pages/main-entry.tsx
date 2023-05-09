@@ -26,20 +26,18 @@ const App = () => {
 
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="flex-start" m={1} >
+    <Box  m={1} >
       <Grid container  >
         <Grid item xs={6}><TextField sx={{ pl: 0 }}
           size="small" variant="outlined"
-          label="Number"
-          type="text"
+          label="Number" type="text"
           value={number}
           onChange={handleNumberChange}
         />
         </Grid>
         <Grid item xs={4}><TextField sx={{ pl: 1 }}
           size="small"  variant="outlined"
-          label="Amount"
-          type="number"
+          label="Amount" type="number"
           value={amount}
           onChange={handleAmountChange}
         />
