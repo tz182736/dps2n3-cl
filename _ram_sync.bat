@@ -12,3 +12,5 @@ echo robocopy "." "%cd%" /MIR /E /xo /mt:20 /XD  >> "_hdd_sync.bat"
 
 robocopy "." "R:\_dev\%ParentFolderName%" /MIR /E /xo /mt:20 /XD 
  
+
+@rem dps save => $ robocopy ".\dps-save" "." /E /IS /IT 
