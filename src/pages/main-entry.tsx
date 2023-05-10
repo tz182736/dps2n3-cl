@@ -28,11 +28,11 @@ const App = () => {
   return (
     <Box m={1} sx={{
       m: 0,
-      backgroundColor: 'lightgray',
-      '&:hover': {
-        backgroundColor: 'white',
-        opacity: [0.9, 0.8, 0.7],
-      },
+      backgroundColor: 'white',
+      // '&:hover': {
+      //   backgroundColor: 'white',
+      //   opacity: [0.9, 0.8, 0.7],
+      // },
     }}>
       <Grid container  >
         <Grid item xs={6}><TextField sx={{ p: 2, pr: 0 }}
