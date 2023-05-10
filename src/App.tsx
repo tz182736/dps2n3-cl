@@ -6,16 +6,20 @@ import Customer_config from './pages/customer-config';
 import Sale_carry_lucky from './pages/sale-carry-lucky';
 import Sale_summary from './pages/sale-summary';
 import NotFound from './pages/NotFound';
-// import DpsAppBar from './components/DpsAppBar-tmp';
-import DpsAppBar from './components/DpsAppBar-responsive';
-
+import DpsAppBar from './components/DpsAppBar';
 import Tmp from './tmp';
 
+import { styled } from '@mui/material';
+
+const Offset = styled('div')(({ theme: Theme }) => Theme.mixins.toolbar);
+
 function App() {
+
   return (
     <>
       <Router>
         <DpsAppBar />
+        <Offset />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path="/bet-type-config" element={<Bet_type />} />

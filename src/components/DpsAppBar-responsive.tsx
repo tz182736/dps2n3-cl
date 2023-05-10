@@ -1,7 +1,6 @@
-{/* #region(collapsed) List of Import  */ }
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
-import {Box} from '@mui/material';
+import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -11,18 +10,13 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem'; 
-import { Select } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-{/* #endregion */ }
+import MenuItem from '@mui/material/MenuItem';
+import AdbIcon from '@mui/icons-material/Adb';
 
-const config_pages: [name: string, route: string][] = [['Bet Type', 'bet-type-config'], ['Customer setup', 'customer-config']]
-const setting_pages: [name: string, route: string][] = [['Sale/Carry/Lucky', 'sale-carry-lucky'], ['Sale Summary', 'sale-summary']]
+const pages = ['Products', 'Pricing', 'Blog'];
+const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
-
-  const navigate = useNavigate();
-
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -33,41 +27,37 @@ function ResponsiveAppBar() {
     setAnchorElUser(event.currentTarget);
   };
 
-  // curried function to prevent callback 
-  const handleCloseNavMenu2 = (routeData: string) => () => {
+  const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-    navigate(routeData);
   };
 
-  const handleCloseUserMenu = (routeData: string) => () => {
+  const handleCloseUserMenu = () => {
     setAnchorElUser(null);
-    navigate(routeData);
   };
 
   return (
-    <AppBar position="sticky">
+    <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* #region customer name ui for desktop  */}
-          <Select style={{ flexGrow: 1 }}
+          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            href="/"
             sx={{
-              mr: 1,
+              mr: 2,
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
-              fontWeight: 380,
-              letterSpacing: '.1rem',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
             }}
-            value={'option1'}
-            onChange={() => { }}
-            displayEmpty
-            inputProps={{ 'aria-label': 'Select an option' }}
           >
-            <MenuItem value={'option1'}>Option 1</MenuItem>
-            <MenuItem value={'option2'}>Option 2</MenuItem>
-            <MenuItem value={'option3'}>Option 3</MenuItem>
-          </Select>
+            LOGO
+          </Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -92,58 +82,48 @@ function ResponsiveAppBar() {
                 horizontal: 'left',
               }}
               open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu2('')}
+              onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {config_pages.map((page) => (
-                <MenuItem key={page[0]}
-                  onClick={handleCloseNavMenu2(page[1])}
-                >
-                  <Typography textAlign="center">{page[0]}</Typography>
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          {/* #endregion customer name ui for Desktop */}
-
-          {/* #region customer name ui for Phone */}
-          <Select style={{ flexGrow: 1 }}
-            sx={{              
-              mr: 1,
-              display: { xs: 'flex', md: 'none'
-              },
+          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href=""
+            sx={{
+              mr: 2,
+              display: { xs: 'flex', md: 'none' },
+              flexGrow: 1,
               fontFamily: 'monospace',
-              fontWeight: 380,
-              letterSpacing: '.1rem',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
             }}
-            value={'option1'}
-            onChange={() => { }}
-            displayEmpty
-            inputProps={{ 'aria-label': 'Select an option' }}
           >
-            <MenuItem value={'option1'}>Option 1</MenuItem>
-            <MenuItem value={'option2'}>Option 2</MenuItem>
-            <MenuItem value={'option3'}>Option 3</MenuItem>
-          </Select>
-
+            LOGO
+          </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {config_pages.map((page) => (
+            {pages.map((page) => (
               <Button
-                key={page[0]}
-                onClick={handleCloseNavMenu2(page[1])}
+                key={page}
+                onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page[0]}
+                {page}
               </Button>
             ))}
           </Box>
-          {/* #endregion customer name ui for phone */}
-
-          {/* #region right corner  Setting MenuItem , flexGrow: 0  */}
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
@@ -165,16 +145,15 @@ function ResponsiveAppBar() {
                 horizontal: 'right',
               }}
               open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu('')}
+              onClose={handleCloseUserMenu}
             >
-              {setting_pages.map((setting) => (
-                <MenuItem key={setting[0]} onClick={handleCloseUserMenu(setting[1])}>
-                  <Typography textAlign="center">{setting[0]}</Typography>
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          {/* #endregion right corner  Setting MenuItem , flexGrow: 0 */}
         </Toolbar>
       </Container>
     </AppBar>

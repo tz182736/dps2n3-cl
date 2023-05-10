@@ -26,30 +26,38 @@ const App = () => {
 
 
   return (
-    <Box  m={1} >
+    <Box m={1} sx={{
+      m: 0,
+      backgroundColor: 'lightgray',
+      '&:hover': {
+        backgroundColor: 'white',
+        opacity: [0.9, 0.8, 0.7],
+      },
+    }}>
       <Grid container  >
-        <Grid item xs={6}><TextField sx={{ pl: 0 }}
+        <Grid item xs={6}><TextField sx={{ p: 2, pr: 0 }}
           size="small" variant="outlined"
           label="Number" type="text"
           value={number}
           onChange={handleNumberChange}
         />
         </Grid>
-        <Grid item xs={4}><TextField sx={{ pl: 1 }}
-          size="small"  variant="outlined"
+        <Grid item xs={4}><TextField sx={{ p: 2, pr: 0 }}
+          size="small" variant="outlined"
           label="Amount" type="number"
           value={amount}
           onChange={handleAmountChange}
         />
         </Grid>
-        <Grid item xs={2} sx={{ pl: 1, pr: 0 }}>
+        <Grid item xs={2} sx={{ p: 2 }}>
           <Button variant="contained" sx={{ fontSize: 14 }} size="small" onClick={handleAddNumber}>
             Add
           </Button>
         </Grid>
       </Grid>
       <Grid container>
-        <List>        {numbersList.map((item, index) => (
+        <List>        
+          {numbersList.map((item, index) => (
           <ListItem key={index}>{item.value}</ListItem>
         ))}
         </List>
