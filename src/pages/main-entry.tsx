@@ -3,16 +3,17 @@ import { useState } from 'react';
 import { TextField, Button, List, ListItem, Grid, Box } from '@mui/material';
 
 interface BetNumber {
-  value: number;
+  number: string;
+  amount: number;
 }
 
 const App = () => {
-  const [number, setNumber] = useState<number>(0);
+  const [bet_number, setNumber] = useState<string>(0);
   const [amount, setAmount] = useState<number>(0);
   const [numbersList, setNumbersList] = useState<BetNumber[]>([]);
 
   const handleNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNumber(parseFloat(event.target.value));
+    setNumber(event.target.value);
   };
 
   const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,7 +21,7 @@ const App = () => {
   };
 
   const handleAddNumber = () => {
-    setNumbersList([...numbersList, { value: number }]);
+    setNumbersList([...numbersList, { value: bet_number }]);
     setNumber(0);
   };
 
@@ -38,7 +39,7 @@ const App = () => {
         <Grid item xs={6}><TextField sx={{ p: 2, pr: 0 }}
           size="small" variant="outlined"
           label="Number" type="text"
-          value={number}
+          value={bet_number}
           onChange={handleNumberChange}
         />
         </Grid>
@@ -56,10 +57,10 @@ const App = () => {
         </Grid>
       </Grid>
       <Grid container>
-        <List>        
+        <List>
           {numbersList.map((item, index) => (
-          <ListItem key={index}>{item.value}</ListItem>
-        ))}
+            <ListItem key={index}>{item.number}{item.amount}</ListItem>
+          ))}
         </List>
       </Grid>
 

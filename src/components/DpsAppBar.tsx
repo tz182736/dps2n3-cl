@@ -1,7 +1,7 @@
 {/* #region(collapsed) List of Import  */ }
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
-import {Box} from '@mui/material';
+import { Box } from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -11,7 +11,7 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem'; 
+import MenuItem from '@mui/material/MenuItem';
 import { Select } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 {/* #endregion */ }
@@ -20,6 +20,7 @@ const config_pages: [name: string, route: string][] = [['Bet Type', 'bet-type-co
 const setting_pages: [name: string, route: string][] = [['Sale/Carry/Lucky', 'sale-carry-lucky'], ['Sale Summary', 'sale-summary']]
 
 function ResponsiveAppBar() {
+  {/* #region(collapsed) functions declaration  */}
 
   const navigate = useNavigate();
 
@@ -44,6 +45,8 @@ function ResponsiveAppBar() {
     navigate(routeData);
   };
 
+  {/* #endregion */}
+
   return (
     <AppBar position="fixed" color="primary" enableColorOnDark>
       <Container maxWidth="xl">
@@ -64,9 +67,9 @@ function ResponsiveAppBar() {
             displayEmpty
             inputProps={{ 'aria-label': 'Select an option' }}
           >
-            <MenuItem value={'option1'}>Option 1</MenuItem>
-            <MenuItem value={'option2'}>Option 2</MenuItem>
-            <MenuItem value={'option3'}>Option 3</MenuItem>
+            <MenuItem value={'option1'}>Aye Min 1</MenuItem>
+            <MenuItem value={'Bo Pai 2'}>Bo Pai 2</MenuItem>
+            <MenuItem value={'Cow Gyi 3'}>Cow Gyi 3</MenuItem>
           </Select>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -110,9 +113,10 @@ function ResponsiveAppBar() {
 
           {/* #region customer name ui for Phone */}
           <Select style={{ flexGrow: 1 }}
-            sx={{              
+            sx={{
               mr: 1,
-              display: { xs: 'flex', md: 'none'
+              display: {
+                xs: 'flex', md: 'none'
               },
               fontFamily: 'monospace',
               fontWeight: 380,
