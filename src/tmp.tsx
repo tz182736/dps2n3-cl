@@ -1,29 +1,37 @@
-import React from 'react';
-import { Box, Grid } from '@mui/material';
+import React, { useState } from 'react';
 
-const FlexLayout: React.FC = () => {
+interface IState {
+  name: string;
+  age: number;
+}
+
+const App = () => {
+  const [people, setPeople] = useState<IState[]>([
+    { name: 'John Doe', age: 25 },
+    { name: 'Jane Doe', age: 30 },
+  ]);
+  const addPerson = (): void => {
+    setPeople([...people, { name: '', age: 0 }]);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, index: number): void => {
+    const newPeople = [...people];
+
+    newPeople[index].name  = e.target.value;
+    setPeople(newPeople);
+  };
+
   return (
-
-    <Box display="flex" height="100vh">
-      <Grid container>
-        <Grid item xs={6} md={3}>
-          <Box bgcolor="red" p={2}>
-            This is the first item with 3/6 ratio on small screens and 3/12 ratio on medium screens
-          </Box>
-        </Grid>
-        <Grid item xs={4} md={2}>
-          <Box bgcolor="green" p={2}>
-            This is the second item with 2/6 ratio on small screens and 2/12 ratio on medium screens
-          </Box>
-        </Grid>
-        <Grid item xs={2} md={1}>
-          <Box bgcolor="blue" p={2}>
-            This is the third item with 1/6 ratio on small screens and 1/12 ratio on medium screens
-          </Box>
-        </Grid>
-      </Grid>
-    </Box>
+    <div>
+      {people.map((person, index) => (
+        <div key={index}>
+          <input type="text" name="name" value={person.name} onChange={(e) => handleChange(e, index)} />
+          <input type="number" name="age" value={person.age} onChange={(e) => handleChange(e, index)} />
+        </div>
+      ))}
+      <button onClick={addPerson}>Add Person</button>
+    </div>
   );
 };
 
-export default FlexLayout;
+export default App;

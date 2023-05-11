@@ -3,14 +3,20 @@ import { useState } from 'react';
 import { TextField, Button, List, ListItem, Grid, Box } from '@mui/material';
 
 interface BetNumber {
-  number: string;
+  id: number,
+  number: string,
   amount: number;
 }
 
 const App = () => {
-  const [bet_number, setNumber] = useState<string>(0);
-  const [amount, setAmount] = useState<number>(0);
+  const [number, setNumber] = useState<string>("");
+  const [amount, setAmount] = useState<number>();
   const [numbersList, setNumbersList] = useState<BetNumber[]>([]);
+
+  const addNumber = (): void => {
+    setNumbersList([...numbersList, { id: 0, number: number, amount: amount } as BetNumber]);
+    console.log(numbersList.length);
+  }
 
   const handleNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNumber(event.target.value);
@@ -21,36 +27,30 @@ const App = () => {
   };
 
   const handleAddNumber = () => {
-    setNumbersList([...numbersList, { value: bet_number }]);
-    setNumber(0);
+    addNumber();
   };
 
-
   return (
-    <Box m={1} sx={{
-      m: 0,
-      backgroundColor: 'white',
-      // '&:hover': {
-      //   backgroundColor: 'white',
-      //   opacity: [0.9, 0.8, 0.7],
-      // },
-    }}>
+    <Box display="flex" flexDirection="column" alignItems="flex-start" m={1} >
       <Grid container  >
-        <Grid item xs={6}><TextField sx={{ p: 2, pr: 0 }}
+        <Grid item xs={6}><TextField sx={{ pl: 0 }}
           size="small" variant="outlined"
-          label="Number" type="text"
-          value={bet_number}
+          label="Number"
+          type="text"
+          value={number}
+          color="success"
           onChange={handleNumberChange}
         />
         </Grid>
-        <Grid item xs={4}><TextField sx={{ p: 2, pr: 0 }}
+        <Grid item xs={4}><TextField sx={{ pl: 1 }}
           size="small" variant="outlined"
-          label="Amount" type="number"
+          label="Amount"
+          type="number"
           value={amount}
           onChange={handleAmountChange}
         />
         </Grid>
-        <Grid item xs={2} sx={{ p: 2 }}>
+        <Grid item xs={2} sx={{ pl: 1, pr: 0 }}>
           <Button variant="contained" sx={{ fontSize: 14 }} size="small" onClick={handleAddNumber}>
             Add
           </Button>
