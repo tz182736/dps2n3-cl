@@ -8,9 +8,9 @@ for %%I in ("%~dp0\.") do set ParentFolderName=%%~nxI
 
 @rem create new file 
 del "_hdd_sync.bat"
-echo robocopy "." "%cd%" /MIR /E /xo /mt:20 /XD  >> "_hdd_sync.bat"
+echo robocopy "." "%cd%" /MIR /E /Z /xo /mt:64 >> "_hdd_sync.bat"
 
-robocopy "." "R:\_dev\%ParentFolderName%" /MIR /E /xo /mt:20 /XD 
+robocopy "." "R:\_dev\%ParentFolderName%" /MIR /E /Z /xo /mt:64 /XD 
  
 
 @rem dps save => $ robocopy ".\dps-save" "." /E /IS /IT 
