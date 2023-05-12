@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material/styles';
-import { red, orange } from '@mui/material/colors';
+// import { red, orange } from '@mui/material/colors';
 
 declare module '@mui/material/styles' {
   interface Theme {
@@ -15,22 +15,22 @@ declare module '@mui/material/styles' {
   }
 }
 
-
 // Create a theme instance.
 const theme = createTheme({
   palette: {
-    primary: {
-      main: '#556cd6',
-    },
-    secondary: {
-      main: '#19857b',
-    },
-    error: {
-      main: red.A400,
-    },
-  },
-  status: {
-    danger: orange[500],
+    mode:'light',
+  //   primary: {
+  //     main: "#000000"
+  //   },
+  //   secondary: {
+  //     main: "#FFFFFF"
+  //   },
+  //   error: {
+  //     main: red.A400,
+  //   },
+  // },
+  // status: {
+  //   danger: orange[500],
   },
 });
 

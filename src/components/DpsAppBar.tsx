@@ -16,7 +16,7 @@ import { Select } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 {/* #endregion */ }
 
-const config_pages: [name: string, route: string][] = [['Bet Type', 'bet-type-config'], ['Customer setup', 'customer-config']]
+const config_pages: [name: string, route: string][] = [['Bet Type', 'bet-type-config'], ['Customer setup', 'customer-config'],['Test page','Tmp']]
 const setting_pages: [name: string, route: string][] = [['Sale/Carry/Lucky', 'sale-carry-lucky'], ['Sale Summary', 'sale-summary']]
 
 function ResponsiveAppBar() {

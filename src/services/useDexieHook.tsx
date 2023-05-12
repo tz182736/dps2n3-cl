@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Dexie from "dexie";
 
 // Define the BetNumber interface
-interface BetNumber {
+export interface BetNumber {
   id?: number;
   name: string;
   value: number;

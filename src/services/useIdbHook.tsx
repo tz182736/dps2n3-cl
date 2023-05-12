@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { openDB } from "idb";
 
 // Define the BetNumber interface
-interface BetNumber {
+export interface BetNumber {
   id: number;
   name: string;
   value: number;
