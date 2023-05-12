@@ -9,7 +9,7 @@ import Sale_summary from './pages/sale-summary';
 import NotFound from './pages/NotFound';
 
 import DpsAppBar from './components/DpsAppBar';
-import Tmp from './components/local-storage';
+import Tmp from './services/local-storage';
 
 const Offset = styled('div')(({ theme: Theme }) => Theme.mixins.toolbar);
 
