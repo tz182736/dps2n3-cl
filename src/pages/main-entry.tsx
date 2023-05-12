@@ -42,8 +42,7 @@ export default function App() {
                         variant='outlined'
                         label='Number'
                         type='text'
-                        value={number}
-                        color='success'
+                        value={number} 
                         onChange={handleNumberChange}
                     />
                 </Grid>

@@ -1,5 +1,10 @@
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { ThemeProvider, createTheme, styled } from '@mui/material';
+import { styled, ThemeProvider } from '@mui/material/styles';
+
+import './index.css'
+import theme from './theme';
 
 import Home from './pages/main-entry';
 import Bet_type from './pages/bet-type-config';
@@ -9,26 +14,16 @@ import Sale_summary from './pages/sale-summary';
 import NotFound from './pages/NotFound';
 
 import DpsAppBar from './components/DpsAppBar';
-import Tmp from './services/local-storage';
+import Tmp from './pages/tmp-page.tsx';
 
 const Offset = styled('div')(({ theme: Theme }) => Theme.mixins.toolbar);
 
-const lightTheme = createTheme({
-  palette: {
-    mode: 'light',
-  },
-});
-
-function App() {
-
-  return (
-    <>
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+  <React.StrictMode>
+    <ThemeProvider theme={theme}>
       <Router>
-        <ThemeProvider theme={lightTheme}>
-          <DpsAppBar />
-          <Offset />
-        </ThemeProvider>
-        
+        <DpsAppBar />
+        <Offset /> <br />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path="/bet-type-config" element={<Bet_type />} />
@@ -39,8 +34,7 @@ function App() {
           <Route path="/tmp" element={<Tmp />} />
         </Routes>
       </Router>
-    </>
-  );
-}
-
-export default App;
+    </ThemeProvider>
+    ,
+  </React.StrictMode>,
+)
