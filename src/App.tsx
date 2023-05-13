@@ -6,7 +6,7 @@ import { styled, ThemeProvider } from '@mui/material/styles';
 import './index.css'
 import theme from './theme';
 
-import Home from './pages/main-entry';
+import { App as Home } from './pages/main-entry';
 import Bet_type from './pages/bet-type-config';
 import Customer_config from './pages/customer-config';
 import Sale_carry_lucky from './pages/sale-carry-lucky';

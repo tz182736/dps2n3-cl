@@ -1,3 +1,7 @@
+Use camelCase for variables, functions, methods, and properties, instances, file names
+
+Use PascalCase for classes , constructors and component names
+
 git init -b main
 
 $ git remote add origin <REMOTE_URL>

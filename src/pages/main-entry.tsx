@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, Button, List, ListItem, Grid, Box } from '@mui/material';
+import useBetNumbers, { BetNumber } from "../services/useIdbHook";
 
 interface BetNumber {
     id: number;
@@ -9,7 +10,13 @@ interface BetNumber {
 
 const initialNumbersList: BetNumber[] = [];
 
-export default function App() {
+export default App = () => {
+
+    // Use the custom hook
+    const { betNumbers, addBetNumber, updateBetNumber, deleteBetNumber } =
+        useBetNumbers();
+
+
     const [number, setNumber] = useState('');
     const [amount, setAmount] = useState<number | undefined>();
 
@@ -42,7 +49,7 @@ export default function App() {
                         variant='outlined'
                         label='Number'
                         type='text'
-                        value={number} 
+                        value={number}
                         onChange={handleNumberChange}
                     />
                 </Grid>

@@ -4,8 +4,8 @@ import { openDB } from "idb";
 // Define the BetNumber interface
 export interface BetNumber {
   id: number;
-  name: string;
-  value: number;
+  betNumber: string;
+  betAmount: number;
 }
 
 // Define the custom hook
