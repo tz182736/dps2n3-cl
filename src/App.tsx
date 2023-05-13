@@ -4,16 +4,16 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { styled, ThemeProvider } from '@mui/material/styles';
 
 import './index.css'
-import theme from './theme';
+import theme from './theme.tsx';
 
-import { App as Home } from './pages/main-entry';
-import Bet_type from './pages/bet-type-config';
-import Customer_config from './pages/customer-config';
-import Sale_carry_lucky from './pages/sale-carry-lucky';
-import Sale_summary from './pages/sale-summary';
-import NotFound from './pages/NotFound';
+import { App as Home } from './pages/main-entry.tsx';
+import Bet_type from './pages/bet-type-config.tsx';
+import Customer_config from './pages/customer-config.tsx';
+import Sale_carry_lucky from './pages/sale-carry-lucky.tsx';
+import Sale_summary from './pages/sale-summary.tsx';
+import NotFound from './pages/NotFound.tsx';
 
-import DpsAppBar from './components/DpsAppBar';
+import DpsAppBar from './components/DpsAppBar.tsx';
 import Tmp from './pages/tmp-page.tsx';
 
 const Offset = styled('div')(({ theme: Theme }) => Theme.mixins.toolbar);
