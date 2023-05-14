@@ -1,12 +1,7 @@
 import { useState, useEffect } from "react";
 import { openDB } from "idb";
 
-// Define the BetNumber interface
-export interface BetNumber {
-  id: number;
-  betNumber: string;
-  betAmount: number;
-}
+import {BetNumber} from "../shared/bet-number";
 
 // Define the custom hook
 const useBetNumbers = () => {

@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
 import { TextField, Button, List, ListItem, Grid, Box } from '@mui/material';
-import useBetNumbers, { BetNumber } from "../services/useIdbHook";
+import useBetNumbers from "../services/useIdbHook";
 
-interface BetNumber {
-    id: number;
-    number: string;
-    amount?: number;
-}
+import { BetNumber } from "../shared/bet-number";
 
 const initialNumbersList: BetNumber[] = [];
 
@@ -35,7 +31,7 @@ export const App = () => {
     const handleAddNumber = () => {
         setNumbersList((prevState) => [
             ...prevState,
-            { id: 0, number: number, amount: amount },
+            { Id: 0, Number: number, Amount: amount },
         ]);
     };
 
@@ -79,8 +75,8 @@ export const App = () => {
                 <List>
                     {numbersList.map((item, index) => (
                         <ListItem key={index}>
-                            {item.number}
-                            {item.amount !== undefined ? item.amount : ''}
+                            {item.Number}
+                            {item.Amount !== undefined ? item.Amount : ''}
                         </ListItem>
                     ))}
                 </List>

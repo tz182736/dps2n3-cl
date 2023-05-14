@@ -1,6 +1,6 @@
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { styled, ThemeProvider } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
 import './index.css'
 
@@ -18,9 +18,9 @@ import Tmp from './pages/tmp-page.tsx';
 
 const Offset = styled('div')(({ theme: Theme }) => Theme.mixins.toolbar);
 
+const customerListProps: CustomerListProps = {} as CustomerListProps;
 
-export const App = () => {
-  
+export default function App() {
   return (<>
     <Router>
       <DpsAppBar />
@@ -28,7 +28,7 @@ export const App = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path="/bet-type-config" element={<Bet_type />} />
-        <Route path="/customer-config" element={<Customer_config {CustomerListProps} />} />
+        <Route path="/customer-config" element={<Customer_config {...customerListProps} />} />
         <Route path="/sale-carry-lucky" element={<Sale_carry_lucky />} />
         <Route path="/sale-summary" element={<Sale_summary />} />
         <Route element={<NotFound />} />
