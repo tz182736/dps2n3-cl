@@ -15,6 +15,7 @@ export interface Customer {
   Commission3D: number;
 }
 
+
 export interface CustomerProps {
   customer: Customer;
   onUpdate: (customer: Customer) => void;

@@ -23,3 +23,12 @@ export interface BetNumber {
   SyncSeq: number; // continues number till reset on new date
   SyncFlag: number; // status beacon for system heart beat. offline sync. etc.. 
 }
+
+
+export interface BetEntryType {
+  BetEntryType : string;
+  Rate2D: number;
+  Commission2D: number;
+  Rate3D: number;
+  Commission3D: number;
+}
