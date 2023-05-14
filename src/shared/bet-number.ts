@@ -3,7 +3,7 @@
 export interface BetNumber {
   Date: string;
   Period: string;
-  Id: number;
+  Id?: number;
   CustomerId: number;
   VoucherId: number;
   Number: string;
@@ -15,11 +15,11 @@ export interface BetNumber {
   Rate: number;
   Commission: number;
 
-  ServerID: string;
-  DealerID: string;
-  ClientID: string;
+  DatabaseID: number; // allow same id in different server. user responsible for duplicate data entry error.
+  MasterID: number;
+  AgentID: number;  // Carry ? Client as client outside system scope ?
 
-  SyncMode: number;
-  SYncSeq: number;
-  SYncFlag: number;
+  SyncMode: number; // 1:added, 2:update, 3:delete,
+  SyncSeq: number; // continues number till reset on new date
+  SyncFlag: number; // status beacon for system heart beat. offline sync. etc.. 
 }

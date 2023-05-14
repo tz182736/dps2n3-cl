@@ -3,6 +3,10 @@ export interface Server {
   serverUrl: string;
   databaseId: number;
   name: string;
-  status: "online" | "offline" | "maintenance";
-  // users: User[];
+  status: string;
+  // "online" | "offline" | "maintenance";
+
+  // 2nd check point ?
+  // AdminId: number;
+  // AssignUserId: number[];
 }

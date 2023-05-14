@@ -10,7 +10,7 @@ interface BetNumber {
 
 const initialNumbersList: BetNumber[] = [];
 
-export default App = () => {
+export const App = () => {
 
     // Use the custom hook
     const { betNumbers, addBetNumber, updateBetNumber, deleteBetNumber } =
