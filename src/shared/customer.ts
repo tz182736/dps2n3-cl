@@ -14,3 +14,10 @@ export interface Customer {
   Rate3D: number;
   Commission3D: number;
 }
+
+
+export interface CustomerListProps {
+  customers: Customer[];
+  onUpdate: (customer: Customer) => void;
+  onDelete: (id: number) => void;
+}
