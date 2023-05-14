@@ -5,18 +5,18 @@ import { openDB } from "idb";
 import { BetEntryType } from "../shared/bet-number";
 
 // Define a functional component that takes the BetEntryType props and renders a form
-const BetEntryForm: React.FC<BetEntryType> = () => {
+const BetEntryForm: React.FC = () => {
     // Destructure the props
     const {
-        BetEntryType,
+        CurrentType,
         Rate2D,
         Commission2D,
         Rate3D,
         Commission3D,
-    } = props;
+    } = {} as  BetEntryType;
 
     // Define the state variables for the form inputs
-    const [betEntryType, setBetEntryType] = useState(BetEntryType);
+    const [betCurrentType, setCurrentType] = useState(CurrentType);
     const [rate2D, setRate2D] = useState(Rate2D);
     const [commission2D, setCommission2D] = useState(Commission2D);
     const [rate3D, setRate3D] = useState(Rate3D);
@@ -33,7 +33,7 @@ const BetEntryForm: React.FC<BetEntryType> = () => {
 
         // Update the bet entry with the new values
         await tx.store.put({
-            BetEntryType: betEntryType,
+            BetEntryType: betCurrentType,
             Rate2D: rate2D,
             Commission2D: commission2D,
             Rate3D: rate3D,
@@ -52,7 +52,7 @@ const BetEntryForm: React.FC<BetEntryType> = () => {
                 <Grid item xs={12}>
                     <TextField
                         label="Bet Entry Type"
-                        value={betEntryType}
+                        value={betCurrentType}
                         variant="outlined"
                         fullWidth
                         disabled

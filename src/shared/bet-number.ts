@@ -25,8 +25,9 @@ export interface BetNumber {
 }
 
 
+// just view model
 export interface BetEntryType {
-  BetEntryType : string;
+  CurrentType : string;
   Rate2D: number;
   Commission2D: number;
   Rate3D: number;
