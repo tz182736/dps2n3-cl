@@ -120,7 +120,8 @@ const CustomerList: React.FC<CustomerListProps> = ({
 }) => {
     return (
         <div className="customer-list">
-            {customers.map((customer) => (
+            <h1>{customers?.length} </h1>
+            {customers?.map((customer) => (
                 <CustomerItem
                     key={customer.Id}
                     customer={customer}
