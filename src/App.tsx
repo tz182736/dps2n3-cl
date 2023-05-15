@@ -10,9 +10,7 @@ import Customer_config from './pages/customer-config.tsx';
 import Sale_carry_lucky from './pages/sale-carry-lucky.tsx';
 import Sale_summary from './pages/sale-summary.tsx';
 import NotFound from './pages/NotFound.tsx';
-
-import { Customer } from "./shared/customer";
-
+ 
 import DpsAppBar from './components/DpsAppBar.tsx';
 import Tmp from './pages/tmp-page.tsx';
 
