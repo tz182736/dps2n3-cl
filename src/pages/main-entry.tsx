@@ -8,11 +8,6 @@ const initialNumbersList: BetNumber[] = [];
 
 export const App = () => {
 
-    // Use the custom hook
-    const { betNumbers, addBetNumber, updateBetNumber, deleteBetNumber } =
-        useBetNumbers();
-
-
     const [number, setNumber] = useState('');
     const [amount, setAmount] = useState<number | undefined>();
 
@@ -29,10 +24,7 @@ export const App = () => {
     };
 
     const handleAddNumber = () => {
-        setNumbersList((prevState) => [
-            ...prevState,
-            { Id: 0, Number: number, Amount: amount },
-        ]);
+
     };
 
     return (

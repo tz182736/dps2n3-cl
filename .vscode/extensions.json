@@ -13,6 +13,7 @@
         "rangav.vscode-thunder-client",
         "rapidapi.vscode-rapidapi-client",
         "rapidapi.vscode-services",
-        "fabiospampinato.vscode-terminals"
+        "fabiospampinato.vscode-terminals",
+        "sourcegraph.cody-ai"
     ]
 }

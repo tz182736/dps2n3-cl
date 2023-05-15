@@ -1,7 +1,7 @@
 // I’m not sure what you are trying to do, but I can try to help you with your code. Here is a possible React TypeScript CRUD UI component for your Customer interface:
 
 import React, { useState } from "react";
-import { Customer, CustomerListProps } from "../shared/customer";
+import { Customer, CustomerListProps } from "../../shared/customer";
 
 interface CustomerProps {
     customer: Customer;
