@@ -16,7 +16,7 @@ const BetEntryForm: React.FC = () => {
     } = {} as  BetEntryType;
 
     // Define the state variables for the form inputs
-    const [betCurrentType, setCurrentType] = useState(CurrentType);
+    const [betCurrentType] = useState(CurrentType);
     const [rate2D, setRate2D] = useState(Rate2D);
     const [commission2D, setCommission2D] = useState(Commission2D);
     const [rate3D, setRate3D] = useState(Rate3D);

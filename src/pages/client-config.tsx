@@ -125,17 +125,7 @@ const ClientCrudPage = () => {
     }
   };
 
-  // Define a function to handle the snackbar close event
-  const handleSnackbarClose = (
-    event?: React.SyntheticEvent,
-    reason?: string
-  ) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setSnackbarMessage("");
-  };
-
+ 
   // Define a function to validate the selected client data
   const validateClient = () => {
     return (
@@ -257,8 +247,8 @@ const ClientCrudPage = () => {
       </Dialog>
 
       {/* Snackbar for showing messages */}
-      <Snackbar open={snackbarMessage !== ""} autoHideDuration={3000} onClose={handleSnackbarClose}>
-        <Alert onClose={handleSnackbarClose} severity="info">
+      <Snackbar open={snackbarMessage !== ""} autoHideDuration={3000} >
+        <Alert  severity="info">
           {snackbarMessage}
         </Alert>
       </Snackbar>

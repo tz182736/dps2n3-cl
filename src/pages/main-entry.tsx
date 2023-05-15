@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { TextField, Button, List, ListItem, Grid, Box } from '@mui/material';
-import useBetNumbers from "../services/useIdbHook";
 
 import { BetNumber } from "../shared/bet-number";
 
@@ -11,7 +10,7 @@ export const App = () => {
     const [number, setNumber] = useState('');
     const [amount, setAmount] = useState<number | undefined>();
 
-    const [numbersList, setNumbersList] = useState<BetNumber[]>(
+    const [numbersList] = useState<BetNumber[]>(
         initialNumbersList
     );
 
