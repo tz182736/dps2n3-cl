@@ -96,7 +96,7 @@ const BetEntryForm: React.FC = () => {
                         fullWidth
                         type="number"
                         onChange={(event) => setCommission3D(Number(event.target.value))}
-                    />
+                />
                 </Grid>
                 <Grid item xs={12}>
                     <Button type="submit" variant="contained" color="primary">
