@@ -12,7 +12,7 @@ import Sale_summary from './pages/sale-summary.tsx';
 import NotFound from './pages/NotFound.tsx';
  
 import DpsAppBar from './components/DpsAppBar.tsx';
-import Tmp from './pages/tmp-page.tsx';
+import Tmp from './pages/test-only/tmp-page.tsx';
 
 const Offset = styled('div')(({ theme: Theme }) => Theme.mixins.toolbar);
 
