@@ -1,43 +1,88 @@
-
 import React from 'react';
-import { List, ListItem, ListItemText } from '@mui/material';
-import { Voucher } from "../shared/vm-report";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { dummy_data, Voucher } from '../shared/vm-report';
 
 interface Props {
   vouchers: Voucher[];
 }
 
-
-// const VoucherList: React.FC<Props> = ({ vouchers }) => {
-const VoucherList: React.FC = () => {
-  const vouchers: Voucher[] = [
-    { Id: 1, VouType: 'type1', Name: 'voucher1', Total: 100, FullLucky: 0, PartLucky: 0, Balance: 50 },
-    { Id: 2, VouType: 'type2', Name: 'voucher2', Total: 200, FullLucky: 0, PartLucky: 0, Balance: 150 },
-    { Id: 3, VouType: 'type3', Name: 'voucher3', Total: 300, FullLucky: 0, PartLucky: 0, Balance: 200 },
-  ];
-
-
+const VoucherTable: React.FC<Props> = ({ vouchers }) => {
   return (
-    <List>
-      {vouchers?.map((voucher) => (
-        <ListItem key={voucher.Id}>
-          <ListItemText primary={`Type: ${voucher.VouType}`} secondary={`Name: ${voucher.Name}`} />
-          <ListItemText primary={`Balance: ${voucher.Balance}`} secondary={`Total: ${voucher.Total}`} />
-        </ListItem>
-      ))}
-    </List>
+    <TableContainer>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Id</TableCell>
+            <TableCell>VouType</TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell>Total</TableCell>
+            <TableCell>FullLucky</TableCell>
+            <TableCell>PartLucky</TableCell>
+            <TableCell>Balance</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {vouchers.map((voucher) => (
+            <React.Fragment key={voucher.Id}>
+              <TableRow>
+                <TableCell>{voucher.Id}</TableCell>
+                <TableCell>{voucher.VouType}</TableCell>
+                <TableCell>{voucher.Name}</TableCell>
+                <TableCell>{voucher.Total}</TableCell>
+                <TableCell>{voucher.FullLucky}</TableCell>
+                <TableCell>{voucher.PartLucky}</TableCell>
+                <TableCell>{voucher.Balance}</TableCell>
+              </TableRow>
+              {voucher.VouDetails.length > 0 && ( // check if the voucher has any details
+                <>
+                  {/* render a subheader row for the details table */}
+                  <TableRow sx={{ backgroundColor: 'lightgreen' }}>
+                    <TableCell colSpan={7}>
+                      Details : {voucher.Name}
+                    </TableCell>
+                  </TableRow>
+                  {/* render a header row for the details table */}
+                  <TableRow sx={{ backgroundColor: 'lightgreen' }}>
+                    <TableCell>BetNumber</TableCell>
+                    <TableCell>BetAmount</TableCell>
+                    <TableCell>BetTotal</TableCell>
+                    <TableCell>FullLucky</TableCell>
+                    <TableCell>PartLucky</TableCell>
+                    <TableCell>Balance</TableCell>
+                    <TableCell>Rate</TableCell>
+                    <TableCell>Commission</TableCell>
+                  </TableRow>
+                  {/* render the details table */}
+                  {voucher.VouDetails.map((detail) => (
+                    <TableRow sx={{ backgroundColor: 'lightgreen' }} key={detail.BetNumber} >
+                      <TableCell>{detail.BetNumber}</TableCell>
+                      <TableCell>{detail.BetAmount}</TableCell>
+                      <TableCell>{detail.BetTotal}</TableCell>
+                      <TableCell>{detail.FullLucky}</TableCell>
+                      <TableCell>{detail.PartLucky}</TableCell>
+                      <TableCell>{detail.Balance}</TableCell>
+                      <TableCell>{detail.Rate}</TableCell>
+                      <TableCell>{detail.Commission}</TableCell>
+                    </TableRow>
+                  ))}
+                </>
+              )}
+            </React.Fragment>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 
-export default VoucherList;
+// export default VoucherTable;
 
-// const App: React.FC = () => {
-//   return (
-//     <div>
-//       <h1>Vouchers</h1>
-//       <VoucherList vouchers={vouchers} /> // pass the vouchers prop here
-//     </div>
-//   );
-// };
+const App: React.FC = () => {
+  return (
+    <div>
+      <VoucherTable vouchers={dummy_data} />
+    </div>
+  );
+};
 
-// export default App;
+export default App; 
