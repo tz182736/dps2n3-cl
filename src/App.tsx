@@ -11,14 +11,12 @@ import Sale_carry_lucky from './pages/sale-carry-lucky.tsx';
 import Sale_summary from './pages/sale-summary.tsx';
 import NotFound from './pages/NotFound.tsx';
 
-import { CustomerListProps } from "./shared/customer";
+import { Customer } from "./shared/customer";
 
 import DpsAppBar from './components/DpsAppBar.tsx';
 import Tmp from './pages/tmp-page.tsx';
 
 const Offset = styled('div')(({ theme: Theme }) => Theme.mixins.toolbar);
-
-const customerListProps: CustomerListProps = {} as CustomerListProps;
 
 export default function App() {
   return (<>
@@ -28,7 +26,7 @@ export default function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path="/bet-type-config" element={<Bet_type />} />
-        <Route path="/customer-config" element={<Customer_config {...customerListProps} />} />
+        <Route path="/customer-config" element={<Customer_config />} />
         <Route path="/sale-carry-lucky" element={<Sale_carry_lucky />} />
         <Route path="/sale-summary" element={<Sale_summary />} />
         <Route element={<NotFound />} />
