@@ -12,3 +12,6 @@ $ git push origin main
 # Pushes the changes in your local repository up to the remote repository you specified as the origin
 git push origin -d main 
 #delete old branch
+
+
+git push -f origin master
