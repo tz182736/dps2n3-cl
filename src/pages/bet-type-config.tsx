@@ -21,12 +21,25 @@ db.version(1).stores({
 export default function BetTypeConfigForm() {
     // Use a state variable to store the config data
     const [config, setConfig] = useState<BetTypeConfig>({
-        CurrentBetType: '2D',
+        CurrentBetType: '3D',
         Rate2D: 0,
         Commission2D: 0,
         Rate3D: 0,
         Commission3D: 0,
     });
+
+    // Use useEffect to fetch the config data from IndexedDB
+    useEffect(() => {
+        // Use Dexie to get the config data by its key
+        db.table('betTypeConfigs')
+            .get('2D')
+            .then((configFromDB) => {
+                setConfig(configFromDB);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }, []);
 
     // Handle input changes and update the config state
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
