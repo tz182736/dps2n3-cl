@@ -2,6 +2,8 @@
 === vite-pwa ===
 # https://github.com/vite-pwa/vite-plugin-pwa/blob/HEAD/src/types.ts
 
+# https://vite-pwa-org.netlify.app/examples/react.html#generatesw
+
 === react naming convention ===
 Use camelCase for variables, functions, methods, and properties, instances, file names
 

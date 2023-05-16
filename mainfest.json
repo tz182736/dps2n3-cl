@@ -5,12 +5,11 @@
     "display": "standalone",
     "background_color": "#fff",
     "description": "DPS online app.",
-    "icons": [ 
-      {
-        "src": "assets/dps2n3.png",
-        "sizes": "96x96",
-        "type": "image/png"
-      } 
+    "icons": [
+        {
+            "src": "assets/dps2n3.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        }
     ]
-  }
-  
+}
