@@ -71,7 +71,7 @@ export default defineConfig({
         scope: '/',
         start_url: '/',
         icons: [{
-          src: 'dps2n3-144x144.png', // <== don't add slash, for testing
+          src: '/assets/dps2n3-144x144.png', // <== don't add slash, for testing
           sizes: '144x144',
           type: 'image/png',
           purpose: "any"
