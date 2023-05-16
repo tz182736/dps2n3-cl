@@ -1,112 +1,96 @@
-// Import React, Material UI components and idb
-import React, { useState } from "react";
-import { TextField, Grid, Button } from "@mui/material";
-import { openDB } from "idb";
-import { BetEntryType } from "../shared/bet-number";
+import React, { useState, useEffect } from 'react';
+import { Button, TextField } from '@mui/material';
+import Dexie from 'dexie';
 
-// Define a functional component that takes the BetEntryType props and renders a form
-const BetEntryForm: React.FC = () => {
-    // Destructure the props
-    const {
-        CurrentType,
-        Rate2D,
-        Commission2D,
-        Rate3D,
-        Commission3D,
-    } = {} as  BetEntryType;
+// Define the interface for the data type
+export interface BetTypeConfig {
+    CurrentBetType: '2D' | '3D';
+    Rate2D: number;
+    Commission2D: number;
+    Rate3D: number;
+    Commission3D: number;
+}
 
-    // Define the state variables for the form inputs
-    const [betCurrentType] = useState(CurrentType);
-    const [rate2D, setRate2D] = useState(Rate2D);
-    const [commission2D, setCommission2D] = useState(Commission2D);
-    const [rate3D, setRate3D] = useState(Rate3D);
-    const [commission3D, setCommission3D] = useState(Commission3D);
+// Create a Dexie database with a table for BetTypeConfig
+const db = new Dexie('BetTypeConfigDB');
+db.version(1).stores({
+    betTypeConfigs: 'CurrentBetType',
+});
 
-    // Define a function to handle the form submission
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        // Prevent the default behavior of the form
-        event.preventDefault();
+// Create a React component that uses the interface and the database
+export default function BetTypeConfigForm() {
+    // Use a state variable to store the config data
+    const [config, setConfig] = useState<BetTypeConfig>({
+        CurrentBetType: '2D',
+        Rate2D: 0,
+        Commission2D: 0,
+        Rate3D: 0,
+        Commission3D: 0,
+    });
 
-        // Open the idb database and get the transaction object
-        const db = await openDB("BetEntryDB", 1);
-        const tx = db.transaction("betEntries", "readwrite");
-
-        // Update the bet entry with the new values
-        await tx.store.put({
-            BetEntryType: betCurrentType,
-            Rate2D: rate2D,
-            Commission2D: commission2D,
-            Rate3D: rate3D,
-            Commission3D: commission3D,
+    // Handle input changes and update the config state
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+        setConfig({
+            ...config,
+            [name]: value,
         });
-
-        // Wait for the transaction to complete and close the database
-        await tx.done;
-        db.close();
     };
 
-    // Return the JSX element
+    // Handle form submission and save the config to IndexedDB
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        // Use Dexie to put the config data in the table
+        db.table('betTypeConfigs')
+            .put(config)
+            .then(() => {
+                console.log('Saved config to IndexedDB');
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+    // Render the form with Material UI components and compact style
     return (
         <form onSubmit={handleSubmit}>
-            <Grid container spacing={2}>
-                <Grid item xs={12}>
-                    <TextField
-                        label="Bet Entry Type"
-                        value={betCurrentType}
-                        variant="outlined"
-                        fullWidth
-                        disabled
-                    />
-                </Grid>
-                <Grid item xs={6}>
-                    <TextField
-                        label="Rate 2D"
-                        value={rate2D}
-                        variant="outlined"
-                        fullWidth
-                        type="number"
-                        onChange={(event) => setRate2D(Number(event.target.value))}
-                    />
-                </Grid>
-                <Grid item xs={6}>
-                    <TextField
-                        label="Commission 2D"
-                        value={commission2D}
-                        variant="outlined"
-                        fullWidth
-                        type="number"
-                        onChange={(event) => setCommission2D(Number(event.target.value))}
-                    />
-                </Grid>
-                <Grid item xs={6}>
-                    <TextField
-                        label="Rate 3D"
-                        value={rate3D}
-                        variant="outlined"
-                        fullWidth
-                        type="number"
-                        onChange={(event) => setRate3D(Number(event.target.value))}
-                    />
-                </Grid>
-                <Grid item xs={6}>
-                    <TextField
-                        label="Commission 3D"
-                        value={commission3D}
-                        variant="outlined"
-                        fullWidth
-                        type="number"
-                        onChange={(event) => setCommission3D(Number(event.target.value))}
-                />
-                </Grid>
-                <Grid item xs={12}>
-                    <Button type="submit" variant="contained" color="primary">
-                        Update Bet Entry
-                    </Button>
-                </Grid>
-            </Grid>
-        </form>
-    );
-};
+            <TextField
+                label="Current Bet Type"
+                name="CurrentBetType"
+                value={config.CurrentBetType}
+                onChange={handleChange}
+                select
+                SelectProps={{
+                    native: true,
+                }}
+                size='small'
+                sx={{ width: '10rem', p: 1 }} // Use sx prop to apply compact style
+            >
+                <option value="2D">2D</option>
+                <option value="3D">3D</option>
+            </TextField><div />
+            <TextField
+                label="Rate 2D"
+                name="Rate2D"
+                type="number"
+                value={config.Rate2D}
+                onChange={handleChange}
+                size='small'
+                sx={{ width: '10rem', p: 1 }} // Use sx prop to apply compact style
+            />
+            <TextField
+                label="Commission 2D"
+                name="Commission2D"
+                type="number"
+                value={config.Commission2D}
+                onChange={handleChange}
+                size='small'
+                sx={{ width: '10rem', p: 1 }} // Use sx prop to apply compact style
+            />
+            <Button type="submit" variant="contained" color="primary"
+                size='small' sx={{ mt: 1.5 }}>
+                Update
+            </Button>
 
-
-export default BetEntryForm;
+        </form >);
+}
