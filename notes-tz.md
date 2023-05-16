@@ -1,4 +1,7 @@
 
+=== vite-pwa ===
+# https://github.com/vite-pwa/vite-plugin-pwa/blob/HEAD/src/types.ts
+
 === react naming convention ===
 Use camelCase for variables, functions, methods, and properties, instances, file names
 
