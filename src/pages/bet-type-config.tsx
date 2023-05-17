@@ -1,33 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Button, TextField } from '@mui/material';
-import Dexie, { Table  } from 'dexie';
 
-// Define the interface for the data type
-export interface BetTypeConfig {
-    CurrentBetType: '2D' | '3D';
-    Rate2D: number;
-    Commission2D: number;
-    Rate3D: number;
-    Commission3D: number;
-}
-
-
-class BetTypeConfigDB extends Dexie {
-    public betTypeConfigs!: Table<BetTypeConfig>;
-    public constructor() {
-        super("BetTypeConfigDB");
-        this.version(1).stores({
-            betTypeConfigs: ""
-        });
-    }
-}
-const db = new BetTypeConfigDB();
-
-// Create a Dexie database with a table for BetTypeConfig
-// const db = new Dexie('BetTypeConfigDB');
-// db.version(1).stores({
-//     betTypeConfigs: '',
-// });
+import { BetTypeConfig } from '../shared/bet-number';
+import { db } from '../shared/db';
 
 // Create a React component that uses the interface and the database
 export default function BetTypeConfigForm() {
