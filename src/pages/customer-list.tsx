@@ -1,5 +1,8 @@
 import React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Link, Route, Routes } from 'react-router-dom';
+
+import Customer_entry from '../pages/customer-entry.tsx';
 import { dummy_data, Customer } from '../shared/i-customer';
 
 interface Props {
@@ -7,7 +10,7 @@ interface Props {
 }
 
 const CustomerTable: React.FC<Props> = ({ customers }) => {
-  return (
+  return (<>
     <TableContainer>
       <Table>
         <TableHead>
@@ -24,7 +27,12 @@ const CustomerTable: React.FC<Props> = ({ customers }) => {
         <TableBody>
           {customers.map((customer) => (
             <TableRow key={customer.Id}>
-              <TableCell>{customer.Id}</TableCell>
+              <Routes>
+                <Route path=":id" element={<Customer_entry customer={customer} />} />
+              </Routes>
+              <TableCell><Link to="{customer.Id}">{customer.Id}</Link>
+
+              </TableCell>
               <TableCell>{customer.Name}</TableCell>
               <TableCell>{customer.Phone}</TableCell>
               <TableCell>{customer.Rate2D}</TableCell>
@@ -35,7 +43,8 @@ const CustomerTable: React.FC<Props> = ({ customers }) => {
           ))}
         </TableBody>
       </Table>
-    </TableContainer>
+    </TableContainer >
+  </>
   );
 };
 
