@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, TextField } from '@mui/material';
 
-import { BetTypeConfig } from '../shared/bet-number';
+import { BetTypeConfig } from '../shared/i-bet-number';
 import { db } from '../shared/db';
 
 // Create a React component that uses the interface and the database

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-import { dummy_data, Customer } from '../shared/customer';
+import { dummy_data, Customer } from '../shared/i-customer';
 
 interface Props {
   customers: Customer[];

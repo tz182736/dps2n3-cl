@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Button, List, ListItem, Grid, Box } from '@mui/material';
 
-import { BetNumber } from "../shared/bet-number";
+import { BetNumber } from "../shared/i-bet-number";
 
 const initialNumbersList: BetNumber[] = [];
 

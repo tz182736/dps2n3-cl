@@ -1,6 +1,6 @@
 import Dexie, { Table } from "dexie";
-import { Customer } from "../shared/customer";
-import { BetNumber, BetTypeConfig } from "../shared/bet-number";
+import { Customer } from "./i-customer";
+import { BetNumber, BetTypeConfig } from "./i-bet-number";
 
 
 export class DpsDB extends Dexie {

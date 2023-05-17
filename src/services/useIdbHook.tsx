@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { openDB } from "idb";
 
-import {BetNumber} from "../shared/bet-number";
+import {BetNumber} from "../shared/i-bet-number";
 
 // Define the custom hook
 const useBetNumbers = () => {
