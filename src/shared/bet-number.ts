@@ -24,7 +24,6 @@ export interface BetNumber {
   SyncFlag: number; // status beacon for system heart beat. offline sync. etc.. 
 }
 
-
 // just view model
 export interface BetTypeConfig {
   CurrentBetType: '2D' | '3D';
@@ -32,15 +31,4 @@ export interface BetTypeConfig {
   Commission2D: number;
   Rate3D: number;
   Commission3D: number;
-}
-
-export interface BetSetting{
-  CurrentBetType: string;
-  RateCommission: BetRateCommission;
-}
-
-export interface BetRateCommission {
-  BetType: string;
-  Rate: number;
-  Commission: number;
-}
+} 
