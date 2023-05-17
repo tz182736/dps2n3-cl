@@ -27,9 +27,20 @@ export interface BetNumber {
 
 // just view model
 export interface BetTypeConfig {
-  CurrentBetType : '2D'|'3D';
+  CurrentBetType: '2D' | '3D';
   Rate2D: number;
   Commission2D: number;
   Rate3D: number;
   Commission3D: number;
+}
+
+export interface BetSetting{
+  CurrentBetType: string;
+  RateCommission: BetRateCommission;
+}
+
+export interface BetRateCommission {
+  BetType: string;
+  Rate: number;
+  Commission: number;
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button, TextField } from '@mui/material';
-import Dexie from 'dexie';
+import Dexie, { Table  } from 'dexie';
 
 // Define the interface for the data type
 export interface BetTypeConfig {
@@ -11,11 +11,23 @@ export interface BetTypeConfig {
     Commission3D: number;
 }
 
+
+class BetTypeConfigDB extends Dexie {
+    public betTypeConfigs!: Table<BetTypeConfig>;
+    public constructor() {
+        super("BetTypeConfigDB");
+        this.version(1).stores({
+            betTypeConfigs: ""
+        });
+    }
+}
+const db = new BetTypeConfigDB();
+
 // Create a Dexie database with a table for BetTypeConfig
-const db = new Dexie('BetTypeConfigDB');
-db.version(1).stores({
-    betTypeConfigs: 'CurrentBetType',
-});
+// const db = new Dexie('BetTypeConfigDB');
+// db.version(1).stores({
+//     betTypeConfigs: '',
+// });
 
 // Create a React component that uses the interface and the database
 export default function BetTypeConfigForm() {
@@ -32,8 +44,9 @@ export default function BetTypeConfigForm() {
     useEffect(() => {
         // Use Dexie to get the config data by its key
         db.table('betTypeConfigs')
-            .get('2D')
+            .get('BetConfigStatus')
             .then((configFromDB) => {
+                console.log(configFromDB);
                 setConfig(configFromDB);
             })
             .catch((error) => {
@@ -55,7 +68,7 @@ export default function BetTypeConfigForm() {
         event.preventDefault();
         // Use Dexie to put the config data in the table
         db.table('betTypeConfigs')
-            .put(config)
+            .put(config, 'BetConfigStatus')
             .then(() => {
                 console.log('Saved config to IndexedDB');
             })
@@ -70,7 +83,7 @@ export default function BetTypeConfigForm() {
             <TextField
                 label="Current Bet Type"
                 name="CurrentBetType"
-                value={config.CurrentBetType}
+                value={config?.CurrentBetType}
                 onChange={handleChange}
                 select
                 SelectProps={{
@@ -86,7 +99,7 @@ export default function BetTypeConfigForm() {
                 label="Rate 2D"
                 name="Rate2D"
                 type="number"
-                value={config.Rate2D}
+                value={config?.Rate2D}
                 onChange={handleChange}
                 size='small'
                 sx={{ width: '10rem', p: 1 }} // Use sx prop to apply compact style
@@ -95,7 +108,24 @@ export default function BetTypeConfigForm() {
                 label="Commission 2D"
                 name="Commission2D"
                 type="number"
-                value={config.Commission2D}
+                value={config?.Commission2D}
+                onChange={handleChange}
+                size='small'
+                sx={{ width: '10rem', p: 1 }} // Use sx prop to apply compact style
+            /><TextField
+                label="Rate 3D"
+                name="Rate3D"
+                type="number"
+                value={config?.Rate3D}
+                onChange={handleChange}
+                size='small'
+                sx={{ width: '10rem', p: 1 }} // Use sx prop to apply compact style
+            />
+            <TextField
+                label="Commission 3D"
+                name="Commission3D"
+                type="number"
+                value={config?.Commission3D}
                 onChange={handleChange}
                 size='small'
                 sx={{ width: '10rem', p: 1 }} // Use sx prop to apply compact style

@@ -1,5 +1,13 @@
 import Dexie from 'dexie';
 
+export default () => { 
+    return (
+        <>
+        Dixie testing page
+        </>
+    );
+};
+
 // Create a Dexie database with a table for people
 const db = new Dexie('PeopleDB');
 db.version(1).stores({
