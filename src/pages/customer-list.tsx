@@ -10,6 +10,7 @@ interface Props {
 }
 
 const CustomerTable: React.FC<Props> = ({ customers }) => {
+
   return (<>
     <TableContainer>
       <Table>
@@ -26,13 +27,13 @@ const CustomerTable: React.FC<Props> = ({ customers }) => {
         </TableHead>
         <TableBody>
           {customers.map((customer) => (
+
             <TableRow key={customer.Id}>
               <Routes>
                 <Route path=":id" element={<Customer_entry customer={customer} />} />
               </Routes>
-              <TableCell><Link to="{customer.Id}">{customer.Id}</Link>
-
-              </TableCell>
+              <TableCell><Link to="{customer.Id}" 
+              replace target="_blank" >{customer.Id}</Link></TableCell>
               <TableCell>{customer.Name}</TableCell>
               <TableCell>{customer.Phone}</TableCell>
               <TableCell>{customer.Rate2D}</TableCell>

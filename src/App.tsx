@@ -26,7 +26,7 @@ export default function App() {
         <Route path='/' element={<Home />} />
         <Route path="/bet-type-config" element={<Bet_type />} />
         <Route path="/customer-list/*" element={<Customer_list />} />
-        {/* <Route path=":id" element={<Customer_entry customer={customer} />} /> */}
+        {/* <Route path="/customer-entry" element={<Customer_entry customer={customer} />} /> */}
         <Route path="/sale-carry-lucky" element={<Sale_carry_lucky />} />
         <Route path="/sale-summary" element={<Sale_summary />} />
         <Route element={<NotFound />} />
